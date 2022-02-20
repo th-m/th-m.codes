@@ -1,0 +1,270 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDataBaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.books (
+//     id integer PRIMARY KEY,
+//     volume_id smallint NOT NULL REFERENCES scriptures.volumes(id) ON DELETE CASCADE,
+//     book_title character varying(22) NOT NULL DEFAULT ''::character varying,
+//     book_long_title character varying(59) NOT NULL DEFAULT ''::character varying,
+//     book_subtitle character varying(80) NOT NULL DEFAULT ''::character varying,
+//     book_short_title character varying(8) NOT NULL DEFAULT ''::character varying,
+//     book_lds_url character varying(6) NOT NULL DEFAULT ''::character varying
+// );
+
+// -- Indices -------------------------------------------------------
+
+// CREATE UNIQUE INDEX pkey_books ON scriptures.books(id int4_ops);
+
+model ScriptureBooks {
+  id               Int    @id @default(autoincrement())
+  volume_id        Int
+  book_title       String @default("") @db.VarChar(22)
+  book_long_title  String @default("") @db.VarChar(59)
+  book_subtitle    String @default("") @db.VarChar(80)
+  book_short_title String @default("") @db.VarChar(8)
+  book_lds_url     String @default("") @db.VarChar(6)
+
+  @@index([id])
+}
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.chapters (
+//     id integer PRIMARY KEY,
+//     book_id integer NOT NULL REFERENCES scriptures.books(id) ON DELETE CASCADE,
+//     chapter_number smallint NOT NULL
+// );
+
+// -- Indices -------------------------------------------------------
+
+// CREATE UNIQUE INDEX pkey_chapters ON scriptures.chapters(id int4_ops);
+
+model ScriptureChapters {
+  id             Int @id @default(autoincrement())
+  book_id        Int
+  chapter_number Int
+
+  @@index([id])
+}
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.hebrew_old_testament (
+//     id integer DEFAULT nextval('scriptures.old_testament_id_seq'::regclass) PRIMARY KEY,
+//     book_title text,
+//     chapter integer NOT NULL,
+//     verse integer NOT NULL,
+//     wordnr integer NOT NULL,
+//     word text NOT NULL,
+//     concordance text,
+//     translit text,
+//     strongs text,
+//     lemma text,
+//     book integer
+// );
+
+// -- Indices -------------------------------------------------------
+
+// CREATE UNIQUE INDEX old_testament_pkey ON scriptures.hebrew_old_testament(id int4_ops);
+
+model ScriptureHebrewOldTestament {
+  id          Int     @id @default(autoincrement())
+  book_title  String?
+  chapter     Int
+  verse       Int
+  wordnr      Int
+  word        String
+  concordance String?
+  translit    String?
+  strongs     String?
+  lemma       String?
+  book        Int
+
+  @@index([id])
+}
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.hebrew_strongs (
+//     id text,
+//     tag text
+// );
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.lexicon_greek (
+//     id integer PRIMARY KEY,
+//     strongs integer NOT NULL,
+//     base_word character varying NOT NULL,
+//     data text NOT NULL,
+//     usage text NOT NULL
+// );
+
+// -- Indices -------------------------------------------------------
+
+// CREATE UNIQUE INDEX lexicon_greek_pkey ON scriptures.lexicon_greek(id int4_ops);
+
+model ScriptureLexiconGreek {
+  id        Int    @id @default(autoincrement())
+  strongs   Int
+  base_word String
+  data      String
+  usage     String
+
+  @@index([id])
+}
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.lexicon_hebrew (
+//     id integer NOT NULL,
+//     strongs integer NOT NULL,
+//     base_word character varying(100) NOT NULL,
+//     data text NOT NULL,
+//     usage text NOT NULL,
+//     part_of_speech character varying(20) NOT NULL
+// );
+
+model ScriptureLexiconHebrew {
+  id             Int    @id @default(autoincrement())
+  strongs        Int
+  base_word      String
+  data           String
+  usage          String
+  part_of_speech String
+
+  @@index([id])
+}
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.morphology (
+//     id integer NOT NULL,
+//     part_of_speech smallint NOT NULL,
+//     declinability smallint NOT NULL,
+//     case_5 smallint NOT NULL,
+//     number smallint NOT NULL,
+//     gender smallint NOT NULL,
+//     degree smallint NOT NULL,
+//     tense smallint NOT NULL,
+//     voice smallint NOT NULL,
+//     mood smallint NOT NULL,
+//     person smallint NOT NULL,
+//     middle smallint NOT NULL,
+//     transitivity smallint NOT NULL,
+//     miscellaneous smallint NOT NULL,
+//     noun_type smallint NOT NULL,
+//     numerical smallint NOT NULL,
+//     form smallint NOT NULL,
+//     dialect smallint NOT NULL,
+//     type smallint NOT NULL,
+//     pronoun_type smallint NOT NULL
+// );
+
+// CREATE TABLE scriptures.verses (
+//     id integer PRIMARY KEY,
+//     chapter_id smallint NOT NULL REFERENCES scriptures.chapters(id) ON DELETE CASCADE,
+//     verse_number smallint NOT NULL,
+//     scripture_text text NOT NULL DEFAULT ''::text
+// );
+
+// -- Indices -------------------------------------------------------
+
+// CREATE UNIQUE INDEX pkey_verses ON scriptures.verses(id int4_ops);
+
+// CREATE TABLE scriptures.volumes (
+//     id integer PRIMARY KEY,
+//     volume_title character varying(22) NOT NULL DEFAULT ''::character varying,
+//     volume_long_title character varying(26) NOT NULL DEFAULT ''::character varying,
+//     volume_subtitle character varying(36) NOT NULL DEFAULT ''::character varying,
+//     volume_short_title character varying(3) NOT NULL DEFAULT ''::character varying,
+//     volume_lds_url character varying(15) NOT NULL DEFAULT ''::character varying
+// );
+
+// -- Indices -------------------------------------------------------
+
+// CREATE UNIQUE INDEX pkey_volumes ON scriptures.volumes(id int4_ops);
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.words_english (
+//     id integer NOT NULL,
+//     verseid integer NOT NULL,
+//     book smallint NOT NULL REFERENCES scriptures.books(id),
+//     chapter smallint NOT NULL,
+//     verse smallint NOT NULL,
+//     word character varying(30) NOT NULL,
+//     head smallint NOT NULL,
+//     clusterid smallint NOT NULL,
+//     divine smallint NOT NULL DEFAULT '0'::smallint,
+//     red smallint NOT NULL DEFAULT '0'::smallint,
+//     implied smallint NOT NULL DEFAULT '0'::smallint,
+//     lang_order integer NOT NULL,
+//     orig_id integer NOT NULL,
+//     paragraph smallint NOT NULL,
+//     notes character varying(100) NOT NULL
+// );
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE TABLE scriptures.words_hebrew_greek (
+//     id integer NOT NULL,
+//     verseid integer NOT NULL,
+//     book smallint NOT NULL REFERENCES scriptures.books(id),
+//     chapter smallint NOT NULL,
+//     verse smallint NOT NULL,
+//     word character varying(100) NOT NULL,
+//     pronun character varying(255) NOT NULL,
+//     strongs smallint NOT NULL,
+//     morph character varying(100) NOT NULL,
+//     orig_order smallint NOT NULL,
+//     connected smallint NOT NULL,
+//     parashah smallint NOT NULL,
+//     notes character varying(512) NOT NULL
+// );
+
+// -- Indices -------------------------------------------------------
+
+// CREATE INDEX words_hebrew_greek_verse_index ON scriptures.words_hebrew_greek(verse int2_ops);
+// CREATE INDEX words_hebrew_greek_chapter_index ON scriptures.words_hebrew_greek(chapter int2_ops);
+
+// -- Table Definition ----------------------------------------------
+
+// CREATE VIEW scriptures.scriptures AS  SELECT volumes.id AS volume_id,
+//     books.id AS book_id,
+//     chapters.id AS chapter_id,
+//     verses.id AS verse_id,
+//     volumes.volume_title,
+//     books.book_title,
+//     volumes.volume_long_title,
+//     books.book_long_title,
+//     volumes.volume_subtitle,
+//     books.book_subtitle,
+//     volumes.volume_short_title,
+//     books.book_short_title,
+//     volumes.volume_lds_url,
+//     books.book_lds_url,
+//     chapters.chapter_number,
+//     verses.verse_number,
+//     verses.scripture_text,
+//     concat(books.book_title, ' ', chapters.chapter_number, ':', verses.verse_number) AS verse_title,
+//     concat(books.book_short_title, ' ', chapters.chapter_number, ':', verses.verse_number) AS verse_short_title
+//    FROM scriptures.volumes
+//      JOIN scriptures.books ON books.volume_id = volumes.id
+//      JOIN scriptures.chapters ON chapters.book_id = books.id
+//      JOIN scriptures.verses ON verses.chapter_id = chapters.id
+//   ORDER BY volumes.id, books.id, chapters.id, verses.id;
