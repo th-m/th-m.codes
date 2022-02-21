@@ -1,5 +1,7 @@
 site_name: th-m.codes
+site_description: Thom's personal code playground
 site_url: https://th-m.codes/
 nav:
-    - Home: overview.md
-theme: readthedocs
+    - Introduction: index.md
+plugins:
+  - techdocs-core
