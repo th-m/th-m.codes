@@ -1,0 +1,5 @@
+site_name: th-m.codes
+site_url: https://th-m.codes/
+nav:
+    - Home: overview.md
+theme: readthedocs
