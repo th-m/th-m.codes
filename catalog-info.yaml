@@ -8,7 +8,7 @@ metadata:
     icon: dashboard
   annotations:
     github.com/project-slug: th-m/th-m.codes
-    backstage.io/techdocs-ref: https://github.com/th-m/th-m.codes/tree/main/docs
+    backstage.io/techdocs-ref: dir:./docs
 spec:
   type: other
   lifecycle: unknown
