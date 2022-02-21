@@ -26,3 +26,5 @@ spec:
   type: service
   lifecycle: unknown
   owner: th-m.codes
+  # system: artist-engagement-portal
+  # dependsOn: ['resource:artists-db']
