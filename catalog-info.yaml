@@ -4,17 +4,9 @@ metadata:
   name: th-m.codes
   description: Thom's Coding Playground
   tags:
-    - Javascript
-    - Typescript
-    - React
-    - Remix
-    - Prisma
-    - GCP
-    - Netlify
-    - Firebase
-    - Go
-    - gRPC
-    - Protobuff
+    - react
+    - go
+    - mkdocs
   links:
   - url: https://th-m.codes/
     title: My Dashboard
