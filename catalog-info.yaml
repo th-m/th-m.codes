@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: th-m.codes
+  annotations:
+    github.com/project-slug: th-m/th-m.codes
+spec:
+  type: other
+  lifecycle: unknown
+  owner: backstage
