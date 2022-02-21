@@ -1,5 +1,5 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: API
 metadata:
   name: th-m.codes
   description: Thom's Coding Playground
@@ -14,9 +14,15 @@ metadata:
   annotations:
     github.com/project-slug: th-m/th-m.codes
     backstage.io/techdocs-ref: dir:./docs
+# spec:
+#   type: service
+#   lifecycle: unknown
+#   owner: th-m.codes
 spec:
-  type: service
-  lifecycle: unknown
-  owner: th-m.codes
+  type: openapi
+  lifecycle: production
+  owner: team-a
+  definition:
+    $text: https://github.com/APIs-guru/openapi-directory/blob/dab6854d4d599aafb0eb36e6c7ae1fe0c37509b7/APIs/spotify.com/2021.4.2/openapi.yaml
   # system: artist-engagement-portal
   # dependsOn: ['resource:artists-db']
