@@ -2,6 +2,19 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: th-m.codes
+  description: Thom's Coding Playground
+  tags:
+    - Javascript
+    - Typescript
+    - React
+    - Remix
+    - Prisma
+    - GCP
+    - Netlify
+    - Firebase
+    - Go
+    - gRPC
+    - Protobuff
   links:
   - url: https://th-m.codes/
     title: My Dashboard
@@ -10,6 +23,6 @@ metadata:
     github.com/project-slug: th-m/th-m.codes
     backstage.io/techdocs-ref: dir:./docs
 spec:
-  type: other
+  type: service
   lifecycle: unknown
-  owner: backstage
+  owner: th-m.codes
