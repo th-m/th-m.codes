@@ -13,7 +13,7 @@ metadata:
     icon: dashboard
   annotations:
     github.com/project-slug: th-m/th-m.codes
-    backstage.io/techdocs-ref: dir:./docs
+    backstage.io/techdocs-ref: dir:.
 # spec:
 #   type: service
 #   lifecycle: unknown
