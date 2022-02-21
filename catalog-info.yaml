@@ -4,6 +4,8 @@ metadata:
   name: th-m.codes
   annotations:
     github.com/project-slug: th-m/th-m.codes
+  annotations:
+    backstage.io/techdocs-ref: ./docs
 spec:
   type: other
   lifecycle: unknown
