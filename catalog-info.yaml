@@ -2,6 +2,10 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: th-m.codes
+    links:
+    - url: https://th-m.codes/
+      title: My Dashboard
+      icon: dashboard
   annotations:
     github.com/project-slug: th-m/th-m.codes
     backstage.io/techdocs-ref: ./docs
