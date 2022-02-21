@@ -1,7 +1,7 @@
+site_description: "Thom's personal code playground"
 site_name: th-m.codes
-site_description: Thom's personal code playground
-site_url: https://th-m.codes/
-nav:
-    - Introduction: index.md
-plugins:
+site_url: "https://th-m.codes/"
+nav: 
+  - Introduction: index.md
+plugins: 
   - techdocs-core
