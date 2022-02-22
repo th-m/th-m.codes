@@ -19,7 +19,7 @@ metadata:
 #   lifecycle: unknown
 #   owner: th-m.codes
 spec:
-  type: openapi
+  type: service
   lifecycle: production
   owner: team-a
   definition:
