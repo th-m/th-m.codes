@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: th-m.codes/api
+  name: th-m.codes.api
   description: A fake API
   tags:
     - rest
