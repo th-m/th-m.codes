@@ -1,0 +1,35 @@
+.canvas-wrapper {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    height: 50vh;
+    width: 100%;
+    transform-origin: 0 100%;
+    overflow: hidden;
+}
+
+.cut-out {
+    z-index: 1;
+    position: absolute;
+    background-color: #1e1e1e;
+    width: 100vw;
+    height: 60vh;
+    clip-path: ellipse(66vw 20vh at 50% 90%);
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    /* //sunset */
+    /* --gradient-color-1: #4C3F91;
+    --gradient-color-2: #9145B6;
+    --gradient-color-3: #B958A5;
+    --gradient-color-4: #FF5677; */
+    /* //twilight */
+    /* --gradient-color-1: #0A1931; */
+    --gradient-color-1: #1e1e1ebb;
+    --gradient-color-2: #185ADB;
+    --gradient-color-3: #FFC947;
+    --gradient-color-4: #1e1e1edd;
+    /* --gradient-color-4: #0A1931; */
+}

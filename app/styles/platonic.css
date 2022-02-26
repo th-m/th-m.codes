@@ -1,0 +1,261 @@
+.s4hedron .lat:nth-child(2n),
+.s8hedron .lat:nth-child(-n + 4),
+.s12hedron .lat:nth-child(-n + 5),
+.s20hedron .lat:nth-child(-n + 10),
+.cap:nth-child(2n) {
+    --o: 1;
+}
+
+.s4hedron .lat:nth-child(2n + 1),
+.s8hedron .lat:nth-child(-n + 4),
+.s12hedron .lat:nth-child(n + 6),
+.s20hedron .lat:nth-child(-n + 5),
+.s20hedron .lat:nth-child(-n + 15):nth-child(n + 11) {
+    --r: 1;
+}
+
+.platonic_wrapper_wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+    justify-content: center;
+}
+
+.platonic_wrapper {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    position: relative;
+    top: 30px;
+    clip-path: ellipse(66vw 20vh at 50% 50%);
+}
+
+@keyframes platonic_switch {
+    0% {
+        bottom: 0;
+    }
+    20% {
+        bottom: 300px;
+    }
+    40% {
+        bottom: 600px;
+    }
+    60% {
+        bottom: 900px;
+    }
+    80% {
+        bottom: 1200px;
+    }
+    100% {
+        bottom: 1500px;
+    }
+}
+
+#platonic {
+    --l: Min(9em, 30vw);
+    --rc: calc(var(--l)*0.61237);
+    --s: calc(3.5*var(--rc));
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(var(--s), 1fr));
+    grid-gap: 0.375em;
+    margin: 0;
+    padding: 0.375em;
+    min-height: 100vh;
+    position: relative;
+    animation: platonic_switch 45s linear infinite;
+}
+
+section {
+    position: relative;
+    height: var(--s);
+    border-radius: 5px;
+    perspective-origin: calc(50% - var(--rc)) calc(50% - var(--rc));
+    perspective: 35em;
+    /* box-shadow: 2px 2px 5px rgba(85, 85, 85, 0.87); */
+    /* background: #f7f7f7; */
+}
+
+section:hover div {
+    animation-play-state: running;
+}
+
+div {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.s3d {
+    --f: 1;
+    top: 50%;
+    left: 50%;
+    --ini: scale3d(var(--f), var(--f), var(--f));
+    transform: var(--ini);
+    animation: r 5s linear infinite;
+    animation-play-state: paused;
+}
+
+.s3d::after {
+    position: absolute;
+    margin: calc(-1*var(--rc));
+    padding: var(--rc);
+    border-radius: 50%;
+    transform: translatey(calc(var(--rc) + 4px)) rotatex(90deg);
+    background: radial-gradient(rgba(153, 153, 153, 0.35), rgba(0, 0, 0, 0) 70%);
+    content: "";
+}
+
+@keyframes r {
+    to {
+        transform: var(--ini) rotatey(1turn);
+    }
+}
+
+.s4hedron .lat:nth-child(4n + 1),
+.s6hedron .lat:nth-child(4n + 1),
+.s8hedron .lat:nth-child(4n + 1) {
+    --jf: 0;
+}
+
+.s4hedron .lat:nth-child(4n + 2),
+.s6hedron .lat:nth-child(4n + 2),
+.s8hedron .lat:nth-child(4n + 2) {
+    --jf: 0.25;
+}
+
+.s4hedron .lat:nth-child(4n + 3),
+.s6hedron .lat:nth-child(4n + 3),
+.s8hedron .lat:nth-child(4n + 3) {
+    --jf: 0.5;
+}
+
+.s4hedron .lat:nth-child(4n + 4),
+.s6hedron .lat:nth-child(4n + 4),
+.s8hedron .lat:nth-child(4n + 4) {
+    --jf: 0.75;
+}
+
+.s12hedron .lat:nth-child(5n + 1),
+.s20hedron .lat:nth-child(5n + 1) {
+    --jf: calc(0 + var(--o)/10);
+}
+
+.s12hedron .lat:nth-child(5n + 2),
+.s20hedron .lat:nth-child(5n + 2) {
+    --jf: calc(0.2 + var(--o)/10);
+}
+
+.s12hedron .lat:nth-child(5n + 3),
+.s20hedron .lat:nth-child(5n + 3) {
+    --jf: calc(0.4 + var(--o)/10);
+}
+
+.s12hedron .lat:nth-child(5n + 4),
+.s20hedron .lat:nth-child(5n + 4) {
+    --jf: calc(0.6 + var(--o)/10);
+}
+
+.s12hedron .lat:nth-child(5n + 5),
+.s20hedron .lat:nth-child(5n + 5) {
+    --jf: calc(0.8 + var(--o)/10);
+}
+
+.s4hedron {
+    --ri: calc(var(--l)*0.20412);
+    --rc: calc(var(--l)*0.61237);
+    color: #c4cb9d;
+}
+
+.s4hedron .lat {
+    --ax: 35.26439deg;
+}
+
+.s6hedron {
+    --f: 0.70711;
+    --ri: calc(var(--l)*0.5);
+    --rc: calc(var(--l)*0.86603);
+    color: #ffe0ac;
+}
+
+.s8hedron {
+    --f: 0.86603;
+    --ri: calc(var(--l)*0.40825);
+    --rc: calc(var(--l)*0.70711);
+    color: #ffbcaa;
+}
+
+.s8hedron .lat {
+    --ax: 35.26439deg;
+}
+
+.s12hedron {
+    --f: 0.43702;
+    --ri: calc(var(--l)*1.11352);
+    --rc: calc(var(--l)*1.40126);
+    color: #ff9fb7;
+}
+
+.s12hedron .lat {
+    --ax: 26.56505deg;
+}
+
+.s20hedron {
+    --f: 0.64389;
+    --ri: calc(var(--l)*0.75576);
+    --rc: calc(var(--l)*0.95106);
+    color: #cf8cbe;
+}
+
+.s20hedron .lat {
+    --xor: calc((var(--r) - var(--o))*(var(--r) - var(--o)));
+    --not-xor: calc(1 - var(--xor));
+    --ax: calc(var(--not-xor)*52.62263deg + var(--xor)*10.81232deg);
+}
+
+.s2d {
+    --o: 0;
+    --sgn-o: calc(1 - 2*var(--o));
+    --r: 0;
+    margin: calc(-1*var(--rcf));
+    padding: var(--rcf);
+    transform: rotatey(var(--ay, 0deg)) rotatex(calc(var(--sgn-o)*var(--ax, 0deg))) translatez(var(--ri)) rotatez(calc(var(--r)*var(--az, 0deg))) scale(calc(1 - .05*var(--f)));
+    background: currentcolor;
+    -webkit-clip-path: polygon(var(--pts));
+    clip-path: polygon(var(--pts));
+    filter: brightness(calc(1 - .2*var(--o)));
+}
+
+.s3gon {
+    --rcf: calc(var(--l)*0.57735);
+    --pts: 50% 0%, 93.30127% 75%, 6.69873% 75%;
+}
+
+.s4gon {
+    --rcf: calc(var(--l)*0.70711);
+    --pts: 85.35534% 14.64466%, 85.35534% 85.35534%, 14.64466% 85.35534%, 14.64466% 14.64466%;
+}
+
+.s5gon {
+    --rcf: calc(var(--l)*0.85065);
+    --pts: 50% 0%, 97.55283% 34.54915%, 79.38926% 90.45085%, 20.61074% 90.45085%, 2.44717% 34.54915%;
+}
+
+.lat {
+    --ay: calc(var(--jf)*1turn);
+    --az: .5turn;
+    animation: s 2.5s ease-in-out calc(var(--jf)*-5s) infinite alternate;
+    animation-play-state: paused;
+}
+
+@keyframes s {
+    to {
+        filter: brightness(calc(.2*(1 - var(--o))));
+    }
+}
+
+.cap {
+    --ax: 90deg;
+}
